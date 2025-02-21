@@ -1,0 +1,43 @@
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WEAK PULL-UP"
+
+#======================================================
+
+# Cristal da placa:
+# Clock de 50 MHz:
+set_location_assignment PIN_12 -to clk_50mhz
+
+#======================================================
+
+set_location_assignment PIN_50 -to reset_button
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to reset_button
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to reset_button
+
+#=======================================================
+
+# Displays:
+# Segmentos do display unidade:
+set_location_assignment PIN_75 -to disp_u[6] # a
+set_location_assignment PIN_76 -to disp_u[5] # b
+set_location_assignment PIN_73 -to disp_u[4] # c
+set_location_assignment PIN_74 -to disp_u[3] # d
+set_location_assignment PIN_71 -to disp_u[2] # e
+set_location_assignment PIN_72 -to disp_u[1] # f
+set_location_assignment PIN_69 -to disp_u[0] # g
+set_location_assignment PIN_70 -to DP2       # dp
+set_instance_assignment -name RESERVE_PIN AS_OUTPUT_DRIVING_GROUND -to DP2
+
+#=========================================================
+
+# Segmentos do display dezena:
+set_location_assignment PIN_33 -to disp_d[6] # a
+set_location_assignment PIN_30 -to disp_d[5] # b
+set_location_assignment PIN_35 -to disp_d[4] # c
+set_location_assignment PIN_34 -to disp_d[3] # d
+set_location_assignment PIN_37 -to disp_d[2] # e
+set_location_assignment PIN_36 -to disp_d[1] # f
+set_location_assignment PIN_39 -to disp_d[0] # g
+set_location_assignment PIN_38 -to DP1       # dp
+set_instance_assignment -name RESERVE_PIN AS_OUTPUT_DRIVING_GROUND -to DP1
+
+#=========================================================

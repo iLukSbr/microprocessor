@@ -1,0 +1,97 @@
+Por exemplo:
+MSB b18                    b0 LSB
+      |                    |
+ADD:  pppp dddd ssss xxxxxxx
+SUBI: pppp dddd xxxx ccccccc
+MOV:  pppp dddd ssss xxxxxxx
+
+...
+onde
+pppp identifica a operação
+dddd identifica o registrador destino
+ssss identifica o registrador fonte
+ccccccc identifica uma constante de 7 bits em complemento de 2
+xxxxxxx, preenchido com 0000000, é irrelevante
+
+Lista de operações
+      pppp
+NOP:  0000
+ADD:  0001
+SUB:  0010
+CLZ:  0011
+ADDI: 0100
+SUBI: 0101
+MOV:  0110
+CMP:  0111
+LI:   1000
+CLR:  1001
+BHI:  1010
+BVS:  1011
+BLO:  1100
+LW:   1101
+SW:   1110
+JUMP: 1111
+
+1. NOP  - No Operation
+   Formato: B"0000_dddd_xxxx_xxxxxxx"
+   Descrição: Não realiza nenhuma operação.
+
+2. ADD  - Add
+   Formato: B"0001_dddd_ssss_xxxxxxx"
+   Descrição: Soma o valor do registrador fonte (ssss) ao valor do registrador destino (dddd).
+
+3. SUB  - Subtract
+   Formato: B"0010_dddd_ssss_xxxxxxx"
+   Descrição: Subtrai o valor do registrador fonte (ssss) do valor do registrador destino (dddd), sem borrow.
+
+4. CLZ  - Count Leading Zeros
+   Formato: B"0011_dddd_xxxx_xxxxxxx"
+   Descrição: Conta o número de zeros à esquerda no valor do registrador destino (dddd).
+
+5. ADDI - Add Immediate
+   Formato: B"0100_dddd_xxxx_ccccccc"
+   Descrição: Soma o valor imediato (ccccccc) ao valor do registrador destino (dddd).
+
+6. SUBI - Subtract Immediate
+   Formato: B"0101_dddd_xxxx_ccccccc"
+   Descrição: Subtrai o valor imediato (ccccccc) do valor do registrador destino (dddd).
+
+7. MOV - Move
+   Formato: B"0110_dddd_ssss_xxxxxxx"
+   Descrição: Copia o valor do registrador fonte (ssss) para o registrador destino (dddd).
+
+8. CMP - Compare
+   Formato: B"0111_dddd_ssss_xxxxxxx"
+   Descrição: Compara o valor do registrador destino (dddd) com o valor do registrador fonte (ssss).
+
+9. LI  - Load Immediate
+   Formato: B"1000_dddd_xxxx_ccccccc"
+   Descrição: Carrega o valor imediato (ccccccc) no registrador destino (dddd).
+
+10. CLR - Clear
+    Formato: B"1001_dddd_xxxx_xxxxxxx"
+    Descrição: Zera o valor do registrador destino (dddd).
+
+11. BHI - Branch if Higher
+    Formato: B"1010_xxxx_xxxx_ccccccc"
+    Descrição: Salta para o endereço relativo signed (ccccccc) se o valor do registrador destino for maior que o fonte.
+
+12. BVS - Branch if Overflow Set
+    Formato: B"1011_xxxx_xxxx_ccccccc"
+    Descrição: Salta para o endereço relativo signed (ccccccc) se o overflow estiver setado.
+
+13. BLO - Branch if Lower
+    Formato: B"1100_xxxx_xxxx_ccccccc"
+    Descrição: Salta para o endereço relativo signed (ccccccc) se o valor do registrador destino for menor que o fonte.
+
+14. LW - Load Word
+    Formato: B"1101_dddd_ssss_ccccccc"
+    Descrição: Carrega um valor do do registrador fonte (ssss) como endereço de memória RAM com constante de deslocamento signed de (ccccccc) no registrador destino (dddd).
+
+15. SW - Store Word
+    Formato: B"1110_dddd_ssss_ccccccc"
+    Descrição: Armazena o valor do registrador fonte (ssss) com deslocamento signed de (ccccccc) no endereço de memória RAM salvo no registrador (dddd).
+
+16. JUMP - Jump
+    Formato: B"1111_xxxx_xxxx_ccccccc"
+    Descrição: Salta para o endereço absoluto (ccccccc).
